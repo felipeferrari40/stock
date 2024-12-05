@@ -85,6 +85,9 @@ defmodule StockWeb do
       import Phoenix.HTML
       # Core UI components and translation
       import StockWeb.CoreComponents
+      import StockWeb.Components.Navbar
+      import StockWeb.Components.Dropdown
+
       import StockWeb.Gettext
 
       # Shortcut for generating JS commands

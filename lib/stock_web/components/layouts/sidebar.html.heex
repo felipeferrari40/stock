@@ -1,0 +1,26 @@
+<.navbar
+  id="sidebar"
+  direction="vertical"
+  class="min-h-screen h-full bg-gray-800 text-white space-y-2 p-4"
+>
+  <:list>
+    <.link navigate="/sales" class="p-3 hover:bg-gray-500 rounded-xl w-full text-end">
+      Vendas
+    </.link>
+  </:list>
+  <:list>
+    <.link navigate="/customers" class="p-3 hover:bg-gray-500 rounded-xl w-full text-end">
+      Clientes
+    </.link>
+  </:list>
+  <:list>
+    <.link navigate="/inventary" class="p-3 hover:bg-gray-500 rounded-xl w-full text-end">
+      Estoque
+    </.link>
+  </:list>
+  <:list>
+    <.link navigate="/" class="p-3 hover:bg-gray-500 rounded-xl w-full text-end">
+      Logoff
+    </.link>
+  </:list>
+</.navbar>
