@@ -2,7 +2,7 @@ defmodule Stock.Customers.Customer do
   use Ecto.Schema
   import Ecto.Changeset
 
-    @derive {
+  @derive {
     Flop.Schema,
     filterable: [],
     sortable: [:inserted_at],
