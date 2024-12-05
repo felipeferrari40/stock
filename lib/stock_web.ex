@@ -54,6 +54,7 @@ defmodule StockWeb do
       use Phoenix.LiveView,
         layout: {StockWeb.Layouts, :app}
 
+      use StockWeb.Components.MishkaComponents
       unquote(html_helpers())
     end
   end

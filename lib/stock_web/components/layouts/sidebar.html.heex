@@ -1,7 +1,8 @@
 <.navbar
   id="sidebar"
   direction="vertical"
-  class="min-h-screen h-full bg-gray-800 text-white space-y-2 p-4"
+  color="dark"
+  class="min-h-screen h-full space-y-2 p-4  text-white"
 >
   <:list>
     <.link navigate="/sales" class="p-3 hover:bg-gray-500 rounded-xl w-full text-end">
@@ -20,6 +21,7 @@
   </:list>
   <:list>
     <.link navigate="/" class="p-3 hover:bg-gray-500 rounded-xl w-full text-end">
+    <.icon name="fa-right-from-bracket" style="solid"/>
       Logoff
     </.link>
   </:list>
