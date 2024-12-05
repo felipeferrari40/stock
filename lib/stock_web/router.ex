@@ -22,6 +22,7 @@ defmodule StockWeb.Router do
       live "/login", UserLoginLive.Show
       live "/sales", SalesLive.Index
       live "/customers", CustomersLive.Index
+      live "/customers/new", CustomersLive.Index, :new
       live "/inventary", InventaryLive.Index
     end
   end

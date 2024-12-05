@@ -134,7 +134,8 @@ defmodule StockWeb.Components.Modal do
                 color_variant(@variant, @color),
                 rounded_size(@rounded),
                 padding_size(@padding),
-                size_class(@size)
+                size_class(@size),
+                @class
               ]}
             >
               <div class="flex items-center justify-between mb-4">
