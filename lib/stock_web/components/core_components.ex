@@ -417,7 +417,7 @@ defmodule StockWeb.CoreComponents do
 
   def icon(%{name: "fa-" <> _} = assigns) do
     ~H"""
-    <i class={["fa-#{@type}", @name, @class]}></i>
+    <span class={["fa-#{@type}", @name, @class]} />
     """
   end
 
