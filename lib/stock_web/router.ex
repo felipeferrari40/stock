@@ -17,12 +17,15 @@ defmodule StockWeb.Router do
   scope "/", StockWeb do
     live_session :public, root_layout: {StockWeb.Layouts, :root} do
       pipe_through :browser
-
+  
       get "/", PageController, :home
+      live "/login", UserLoginLive.Show
       live "/sales", SalesLive.Index
       live "/customers", CustomersLive.Index
+      live "/inventary", InventaryLive.Index
     end
   end
+  
 
   if Application.compile_env(:stock, :dev_routes) do
     import Phoenix.LiveDashboard.Router
