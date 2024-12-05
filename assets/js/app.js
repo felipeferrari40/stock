@@ -17,10 +17,20 @@
 
 // Include phoenix_html to handle method=PUT/DELETE in forms and buttons.
 import "phoenix_html"
+
 // Establish Phoenix Socket and LiveView configuration.
 import {Socket} from "phoenix"
 import {LiveSocket} from "phoenix_live_view"
 import topbar from "../vendor/topbar"
+import Alpine from "alpinejs"
+import { mask } from "@alpinejs/mask"
+import persist from '@alpinejs/persist'
+
+window.Alpine = Alpine
+window.Alpine.plugin(mask)
+window.Alpine.plugin(persist)
+window.Alpine.start()
+
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 let liveSocket = new LiveSocket("/live", Socket, {
