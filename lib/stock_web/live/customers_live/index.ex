@@ -9,44 +9,22 @@ defmodule StockWeb.CustomersLive.Index do
         <div class="flex text-xl font-bold items-center text-middle justify-center align-middle">
           Clientes
         </div>
-        <.button class="text-md bg-[#696969] text-white">
+        <.button class="text-md">
         <.icon name="fa-add" />
           Adicionar Clientes
         </.button>
       </div>
       <.table>
-        <:header>Name</:header>
-        <:header>Age</:header>
-        <:header>Address</:header>
+        <:header>Nome</:header>
         <:header>Email</:header>
-        <:header>Job</:header>
-        <:header>Action</:header>
+        <:header>Telefone</:header>
+        <:header>Compras</:header>
 
         <.tr>
           <.td>Jim Emerald</.td>
-          <.td>27</.td>
-          <.td>London No. 1 Lake Park</.td>
           <.td>test@mail.com</.td>
-          <.td>Frontend Developer</.td>
-          <.td><.rating select={3} count={5} /></.td>
-        </.tr>
-
-        <.tr>
-          <.td>Alex Brown</.td>
-          <.td>32</.td>
-          <.td>New York No. 2 River Park</.td>
-          <.td>alex@mail.com</.td>
-          <.td>Backend Developer</.td>
-          <.td><.rating select={4} count={5} /></.td>
-        </.tr>
-
-        <.tr>
-          <.td>John Doe</.td>
-          <.td>28</.td>
-          <.td>Los Angeles No. 3 Sunset Boulevard</.td>
-          <.td>john@mail.com</.td>
-          <.td>UI/UX Designer</.td>
-          <.td><.rating select={5} count={5} /></.td>
+          <.td>(13) 1111-11111</.td>
+          <.td>Compras</.td>
         </.tr>
       </.table>
     </.card>

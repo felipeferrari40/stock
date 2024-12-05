@@ -20,24 +20,6 @@ defmodule StockWeb.CoreComponents do
   import StockWeb.Gettext
 
   @doc """
-  Renders a modal.
-
-  ## Examples
-
-      <.modal id="confirm-modal">
-        This is a modal.
-      </.modal>
-
-  JS commands may be passed to the `:on_cancel` to configure
-  the closing/cancel event, for example:
-
-      <.modal id="confirm" on_cancel={JS.navigate(~p"/posts")}>
-        This is another modal.
-      </.modal>
-
-  """
-
-  @doc """
   Renders flash notices.
 
   ## Examples
@@ -159,15 +141,6 @@ defmodule StockWeb.CoreComponents do
     </.form>
     """
   end
-
-  @doc """
-  Renders a button.
-
-  ## Examples
-
-      <.button>Send!</.button>
-      <.button phx-click="go" class="ml-2">Send!</.button>
-  """
 
   @doc """
   Renders an input with label and error messages.
@@ -367,17 +340,6 @@ defmodule StockWeb.CoreComponents do
     </header>
     """
   end
-
-  @doc ~S"""
-  Renders a table with generic styling.
-
-  ## Examples
-
-      <.table id="users" rows={@users}>
-        <:col :let={user} label="id"><%= user.id %></:col>
-        <:col :let={user} label="username"><%= user.username %></:col>
-      </.table>
-  """
 
   @doc """
   Renders a data list.
