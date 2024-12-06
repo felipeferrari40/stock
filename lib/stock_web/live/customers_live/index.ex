@@ -55,9 +55,6 @@ defmodule StockWeb.CustomersLive.Index do
   end
 
   defp apply_action(socket, :new, _params) do
-    IO.inspect(">>>>>>>>>>>>>>>>>>>>>>>>>>>")
-
-    
     socket
     |> assign(:page_title, "Novo Cliente")
     
@@ -79,8 +76,10 @@ defmodule StockWeb.CustomersLive.Index do
 
   @impl true
   def handle_event("save", %{"customer" => customer_params}, socket) do
+    IO.inspect(Stock.Customers.create_customer(customer_params))
     case Stock.Customers.create_customer(customer_params) do
-      {:ok, _customer} ->
+      {:ok, customer} ->
+        IO.inspect(customer)
         {:noreply,
          socket
          |> put_flash(:info, "Cliente gerado com sucesso!")

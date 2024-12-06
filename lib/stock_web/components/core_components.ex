@@ -172,11 +172,12 @@ defmodule StockWeb.CoreComponents do
   attr :name, :any
   attr :label, :string, default: nil
   attr :value, :any
+  attr :class, :any, default: nil
 
   attr :type, :string,
     default: "text",
     values: ~w(checkbox color date datetime-local email file month number password
-               range search select tel text textarea time url week)
+               range search select tel text textarea time url week hidden)
 
   attr :field, Phoenix.HTML.FormField,
     doc: "a form field struct retrieved from the form, for example: @form[:email]"
@@ -186,17 +187,19 @@ defmodule StockWeb.CoreComponents do
   attr :prompt, :string, default: nil, doc: "the prompt for select inputs"
   attr :options, :list, doc: "the options to pass to Phoenix.HTML.Form.options_for_select/2"
   attr :multiple, :boolean, default: false, doc: "the multiple flag for select inputs"
+  attr :disabled, :boolean, default: false, doc: "the disabled flag for select"
 
   attr :rest, :global,
-    include: ~w(accept autocomplete capture cols disabled form list max maxlength min minlength
-                multiple pattern placeholder readonly required rows size step)
+    include:
+      ~w(accept autocomplete capture cols disabled form list max maxlength min minlength
+                multiple pattern placeholder readonly required rows size step x-data x-mask x-mask:dynamic)
+
+  slot :inner_block
 
   def input(%{field: %Phoenix.HTML.FormField{} = field} = assigns) do
-    errors = if Phoenix.Component.used_input?(field), do: field.errors, else: []
-
     assigns
     |> assign(field: nil, id: assigns.id || field.id)
-    |> assign(:errors, Enum.map(errors, &translate_error(&1)))
+    |> assign(:errors, Enum.map(field.errors, &translate_error(&1)))
     |> assign_new(:name, fn -> if assigns.multiple, do: field.name <> "[]", else: field.name end)
     |> assign_new(:value, fn -> field.value end)
     |> input()
@@ -209,16 +212,16 @@ defmodule StockWeb.CoreComponents do
       end)
 
     ~H"""
-    <div>
-      <label class="flex items-center gap-4 text-sm leading-6 text-zinc-600">
-        <input type="hidden" name={@name} value="false" disabled={@rest[:disabled]} />
+    <div phx-feedback-for={@name} class={@class}>
+      <label class="inline-flex items-center gap-2.5 rounded-lg p-4 text-neutral transition-colors text-base/4">
+        <input type="hidden" name={@name} value="false" />
         <input
           type="checkbox"
           id={@id}
           name={@name}
           value="true"
           checked={@checked}
-          class="rounded border-zinc-300 text-zinc-900 focus:ring-0"
+          class="rounded border-primary-light checked:border-primary text-neutral focus:ring-0"
           {@rest}
         />
         <%= @label %>
@@ -230,13 +233,17 @@ defmodule StockWeb.CoreComponents do
 
   def input(%{type: "select"} = assigns) do
     ~H"""
-    <div>
+    <div phx-feedback-for={@name} class={@class}>
       <.label for={@id}><%= @label %></.label>
       <select
         id={@id}
         name={@name}
-        class="mt-2 block w-full rounded-md border border-gray-300 bg-white shadow-sm focus:border-zinc-400 focus:ring-0 sm:text-sm"
+        class={[
+          "block h-10 w-full rounded-lg border border-primary-light bg-white shadow-sm focus:border-primary focus:ring-0 sm:text-sm",
+          @label && "mt-0.5"
+        ]}
         multiple={@multiple}
+        disabled={@disabled}
         {@rest}
       >
         <option :if={@prompt} value=""><%= @prompt %></option>
@@ -249,15 +256,17 @@ defmodule StockWeb.CoreComponents do
 
   def input(%{type: "textarea"} = assigns) do
     ~H"""
-    <div>
+    <div phx-feedback-for={@name} class={@class}>
       <.label for={@id}><%= @label %></.label>
       <textarea
         id={@id}
         name={@name}
         class={[
-          "mt-2 block w-full rounded-lg text-zinc-900 focus:ring-0 sm:text-sm sm:leading-6 min-h-[6rem]",
-          @errors == [] && "border-zinc-300 focus:border-zinc-400",
-          @errors != [] && "border-rose-400 focus:border-rose-400"
+          "mt-0.5 block w-full rounded-lg text-neutral/90 placeholder:text-neutral/70 focus:ring-0 sm:text-sm sm:leading-6",
+          "min-h-[4rem] phx-no-feedback:border-primary-light phx-no-feedback:focus:border-primary",
+          @label && "mt-0.5",
+          @errors == [] && "border-primary-light focus:border-primary",
+          @errors != [] && "border-danger focus:border-danger"
         ]}
         {@rest}
       ><%= Phoenix.HTML.Form.normalize_value("textarea", @value) %></textarea>
@@ -269,7 +278,7 @@ defmodule StockWeb.CoreComponents do
   # All other inputs text, datetime-local, url, password, etc. are handled here...
   def input(assigns) do
     ~H"""
-    <div>
+    <div phx-feedback-for={@name} class={@class}>
       <.label for={@id}><%= @label %></.label>
       <input
         type={@type}
@@ -277,9 +286,11 @@ defmodule StockWeb.CoreComponents do
         id={@id}
         value={Phoenix.HTML.Form.normalize_value(@type, @value)}
         class={[
-          "mt-2 block w-full rounded-lg text-zinc-900 focus:ring-0 sm:text-sm sm:leading-6",
-          @errors == [] && "border-zinc-300 focus:border-zinc-400",
-          @errors != [] && "border-rose-400 focus:border-rose-400"
+          "h-10 block w-full rounded-lg text-neutral/90 placeholder:text-neutral/70 focus:ring-0 sm:text-sm sm:leading-6",
+          "read-only:bg-neutral/5 phx-no-feedback:border-primary-light phx-no-feedback:focus:border-primary",
+          @label && "mt-0.5",
+          @errors == [] && "border-primary-light focus:border-primary",
+          @errors != [] && "border-danger focus:border-danger"
         ]}
         {@rest}
       />
