@@ -1,28 +1,21 @@
 <.sidebar
-  id="sidebar"
-  direction="vertical"
+  id="sidebar-id"
+  size="fit"
   color="dark"
-  class="min-h-screen h-full space-y-2 p-4  text-white"
+  hide_position="left"
 >
-  <:list>
+  <div class="flex flex-col px-4 py-2">
     <.link navigate="/sales" class="p-3 hover:bg-gray-500 rounded-xl w-full text-end">
       Vendas
     </.link>
-  </:list>
-  <:list>
     <.link navigate="/customers" class="p-3 hover:bg-gray-500 rounded-xl w-full text-end">
       Clientes
     </.link>
-  </:list>
-  <:list>
     <.link navigate="/inventory" class="p-3 hover:bg-gray-500 rounded-xl w-full text-end">
       Estoque
     </.link>
-  </:list>
-  <:list>
     <.link navigate="/" class="p-3 hover:bg-gray-500 rounded-xl w-full text-end">
-    <.icon name="fa-right-from-bracket"/>
-      Logoff
+      <.icon name="fa-right-from-bracket" /> Logoff
     </.link>
-  </:list>
+  </div>
 </.sidebar>

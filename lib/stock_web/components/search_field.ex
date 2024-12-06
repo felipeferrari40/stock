@@ -192,7 +192,7 @@ defmodule StockWeb.Components.SearchField do
           class={["flex items-center justify-center shrink-0 pe-2 h-[inherit]"]}
         >
           <button class="flex items-center justify-center">
-            <.icon name="hero-magnifying-glass" class="search-field-icon" />
+            <.icon name="fa-magnifying-glass" class="search-field-icon" />
           </button>
         </div>
       </div>
@@ -257,7 +257,7 @@ defmodule StockWeb.Components.SearchField do
           class={["flex items-center justify-center shrink-0 pe-2 h-[inherit]"]}
         >
           <button class="flex items-center justify-center">
-            <.icon name="hero-magnifying-glass" class="search-field-icon" />
+            <.icon name="fa-magnifying-glass" class="search-field-icon" />
           </button>
         </div>
       </div>
@@ -867,18 +867,13 @@ defmodule StockWeb.Components.SearchField do
     end
   end
 
-  attr :name, :string, required: true, doc: "Specifies the name of the element"
-  attr :class, :any, default: nil, doc: "Custom CSS class for additional styling"
+  attr :name, :string, required: true
+  attr :type, :string, default: "regular", values: ~w(brands regular solid)
+  attr :class, :any, default: nil
 
-  defp icon(%{name: "hero-" <> _, class: class} = assigns) when is_list(class) do
+  defp icon(%{name: "fa-" <> _} = assigns) do
     ~H"""
-    <span class={[@name] ++ @class} />
-    """
-  end
-
-  defp icon(%{name: "hero-" <> _} = assigns) do
-    ~H"""
-    <span class={[@name, @class]} />
+    <span class={["fa-#{@type}", @name, @class]} />
     """
   end
 end

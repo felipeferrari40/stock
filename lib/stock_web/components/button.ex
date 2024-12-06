@@ -1150,18 +1150,13 @@ defmodule StockWeb.Components.Button do
     Map.drop(rest, all_rest)
   end
 
-  attr :name, :string, required: true, doc: "Specifies the name of the element"
-  attr :class, :any, default: nil, doc: "Custom CSS class for additional styling"
+  attr :name, :string, required: true
+  attr :type, :string, default: "regular", values: ~w(brands regular solid)
+  attr :class, :any, default: nil
 
-  defp icon(%{name: "hero-" <> _, class: class} = assigns) when is_list(class) do
+  defp icon(%{name: "fa-" <> _} = assigns) do
     ~H"""
-    <span class={[@name] ++ @class} />
-    """
-  end
-
-  defp icon(%{name: "hero-" <> _} = assigns) do
-    ~H"""
-    <span class={[@name, @class]} />
+    <span class={["fa-#{@type}", @name, @class]} />
     """
   end
 end

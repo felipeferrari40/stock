@@ -102,23 +102,23 @@ defmodule StockWeb.Components.Pagination do
   attr :variant, :string, values: @variants, default: "default", doc: "Determines the style"
 
   attr :separator, :string,
-    default: "hero-ellipsis-horizontal",
+    default: "fa-ellipsis-horizontal",
     doc: "Determines a separator for items of an element"
 
   attr :next_label, :string,
-    default: "hero-chevron-right",
+    default: "fa-chevron-right",
     doc: "Determines the next icon or label"
 
   attr :previous_label, :string,
-    default: "hero-chevron-left",
+    default: "fa-chevron-left",
     doc: "Determines the previous icon or label"
 
   attr :first_label, :string,
-    default: "hero-chevron-double-left",
+    default: "fa-chevron-double-left",
     doc: "Determines the first icon or label"
 
   attr :last_label, :string,
-    default: "hero-chevron-double-right",
+    default: "fa-chevron-double-right",
     doc: "Determines the last icon or label"
 
   attr :class, :string, default: nil, doc: "Custom CSS class for additional styling"
@@ -213,7 +213,7 @@ defmodule StockWeb.Components.Pagination do
   attr :name, :string, doc: "Specifies the name of the element"
   attr :class, :string, default: nil, doc: "Custom CSS class for additional styling"
 
-  defp icon_or_text(%{name: "hero-" <> _icon_name} = assigns) do
+  defp icon_or_text(%{name: "fa-" <> _icon_name} = assigns) do
     ~H"""
     <.icon name={@name} class={@class || "pagination-icon"} />
     """
@@ -1439,18 +1439,13 @@ defmodule StockWeb.Components.Pagination do
   defp show_pagination?(_, total) when total > 1, do: true
   defp show_pagination?(_, _), do: false
 
-  attr :name, :string, required: true, doc: "Specifies the name of the element"
-  attr :class, :any, default: nil, doc: "Custom CSS class for additional styling"
+  attr :name, :string, required: true
+  attr :type, :string, default: "regular", values: ~w(brands regular solid)
+  attr :class, :any, default: nil
 
-  defp icon(%{name: "hero-" <> _, class: class} = assigns) when is_list(class) do
+  defp icon(%{name: "fa-" <> _} = assigns) do
     ~H"""
-    <span class={[@name] ++ @class} />
-    """
-  end
-
-  defp icon(%{name: "hero-" <> _} = assigns) do
-    ~H"""
-    <span class={[@name, @class]} />
+    <span class={["fa-#{@type}", @name, @class]} />
     """
   end
 end
