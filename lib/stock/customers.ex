@@ -17,8 +17,27 @@ defmodule Stock.Customers do
       [%Customer{}, ...]
 
   """
-  def list_customers do
-    Repo.all(Customer)
+  def list_customers(params \\ %{}) do
+    Customer
+    |> filter_where(params)
+    |> Flop.validate_and_run(params, for: Customer)
+  end
+
+  defp filter_where(query, params) do
+    Enum.reduce(params, query, fn
+      {"query", value}, query ->
+        value = "%#{value}%"
+        where(query, [u], ilike(u.name, ^value) or ilike(u.email, ^value))
+
+      {"role", value}, query ->
+        where(query, [u], u.role == ^value)
+
+      {"approved", value}, query ->
+        where(query, [u], u.approved == ^value)
+
+      {_, _}, query ->
+        query
+    end)
   end
 
   @doc """

@@ -31,6 +31,8 @@ config :stock, StockWeb.Endpoint,
 # at the `config/runtime.exs`.
 config :stock, Stock.Mailer, adapter: Swoosh.Adapters.Local
 
+config :flop, repo: Stock.Repo
+
 # Configure esbuild (the version is required)
 config :esbuild,
   version: "0.17.11",

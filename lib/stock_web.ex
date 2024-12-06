@@ -86,7 +86,7 @@ defmodule StockWeb do
       import Phoenix.HTML
       # Core UI components and translation
       import StockWeb.CoreComponents
-      import StockWeb.Components.Navbar
+      import StockWeb.Components.Sidebar
       import StockWeb.Components.Dropdown
 
       import StockWeb.Gettext

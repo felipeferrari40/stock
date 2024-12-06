@@ -1,4 +1,4 @@
-defmodule StockWeb.CustomersLive.Index do
+defmodule StockWeb.InventoryLive.Index do
   use StockWeb, :live_view
 
   alias Stock.Customers
