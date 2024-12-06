@@ -12,7 +12,7 @@ defmodule StockWeb.CustomersLive.Index do
           Clientes
         </div>
         <.link patch={~p"/customers/new"}>
-          <.button class="text-lg" size="medium">
+          <.button class="text-lg" size="small">
             <.icon name="fa-add" /> Adicionar Clientes
           </.button>
         </.link>
@@ -103,9 +103,7 @@ defmodule StockWeb.CustomersLive.Index do
   @impl true
   def handle_event("save", %{"customer" => customer_params}, socket) do
     case Stock.Customers.create_customer(customer_params) do
-      {:ok, customer} ->
-        IO.inspect(customer)
-
+      {:ok, _customer} ->
         {:noreply,
          socket
          |> put_flash(:info, "Cliente gerado com sucesso!")

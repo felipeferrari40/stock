@@ -1,15 +1,21 @@
-<.sidebar id="sidebar-id" color="dark" hide_position="left" position="right" class="w-fit">
-  <div class="flex flex-col px-4 py-2">
-    <.link navigate="/sales" class="p-3 hover:bg-gray-500 rounded-xl w-full text-end">
+<.sidebar
+  id="sidebar-id"
+  color="dark"
+  hide_position="left"
+  position="right"
+  size="medium"
+>
+  <div class="flex flex-col px-4 py-2 h-full">
+    <.link navigate="/sales" class="mt-16 p-3 hover:bg-gray-500 rounded-xl text-end">
       Vendas
     </.link>
-    <.link navigate="/customers" class="p-3 hover:bg-gray-500 rounded-xl w-full text-end">
+    <.link navigate="/customers" class="p-3 hover:bg-gray-500 rounded-xl text-end">
       Clientes
     </.link>
-    <.link navigate="/inventory" class="p-3 hover:bg-gray-500 rounded-xl w-full text-end">
+    <.link navigate="/inventory" class="p-3 hover:bg-gray-500 rounded-xl text-end">
       Estoque
     </.link>
-    <.link navigate="/" class="p-3 hover:bg-gray-500 rounded-xl w-full text-end">
+    <.link navigate="/" class="mt-auto p-3 first-letter:p-3 hover:bg-gray-500 rounded-xl mb-8 text-end">
       <.icon name="fa-right-from-bracket" /> Logoff
     </.link>
   </div>
