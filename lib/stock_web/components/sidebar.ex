@@ -95,7 +95,7 @@ defmodule StockWeb.Components.Sidebar do
       phx-click-away={hide_sidebar(@on_hide_away, @id, @hide_position)}
       phx-remove={hide_sidebar(@id, @hide_position)}
       class={[
-        "fixed h-screen transition-transform z-10",
+        "h-screen text-nowrap",
         border_class(@border, @position),
         hide_position(@hide_position),
         color_variant(@variant, @color),
@@ -107,14 +107,13 @@ defmodule StockWeb.Components.Sidebar do
       {@rest}
     >
       <div class="h-full overflow-y-auto">
-        <div class="flex justify-end pt-2 px-2 mb-1">
+        <div class="flex justify-end pt-2 px-2 mb-1 md:hidden dismiss-sidebar-wrapper">
           <button
             type="button"
             class="dismiss-sidebar-button"
             phx-click={JS.exec(@on_hide, "phx-remove", to: "##{@id}")}
           >
-            <.icon name="fa-arrow-right" />
-            <span class="sr-only"><%= gettext("Close menu") %></span>
+            <.icon name="fa-x" />
           </button>
         </div>
         <%= render_slot(@inner_block) %>
