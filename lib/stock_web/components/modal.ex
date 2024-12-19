@@ -130,11 +130,10 @@ defmodule StockWeb.Components.Modal do
               phx-key="escape"
               phx-click-away={JS.exec("data-cancel", to: "##{@id}")}
               class={[
-                "relative hidden transition",
+                "relative hidden transition mx-auto max-w-4xl",
                 color_variant(@variant, @color),
                 rounded_size(@rounded),
                 padding_size(@padding),
-                size_class(@size),
                 @class
               ]}
             >
@@ -148,7 +147,7 @@ defmodule StockWeb.Components.Modal do
                   class="p-2 hover:opacity-60"
                   aria-label={gettext("close")}
                 >
-                  <.icon name="hero-x-mark-solid" class="size-5" />
+                  <.icon name="fa-x" class="size-5" />
                 </button>
               </div>
 
@@ -190,28 +189,6 @@ defmodule StockWeb.Components.Modal do
   defp padding_size(params) when is_binary(params), do: params
 
   defp padding_size(_), do: padding_size("small")
-
-  defp size_class("extra_small"), do: "mx-auto max-w-xs"
-
-  defp size_class("small"), do: "mx-auto max-w-sm"
-
-  defp size_class("medium"), do: "mx-auto max-w-md"
-
-  defp size_class("large"), do: "mx-auto max-w-lg"
-
-  defp size_class("extra_large"), do: "mx-auto max-w-xl"
-
-  defp size_class("double_large"), do: "mx-auto max-w-2xl"
-
-  defp size_class("triple_large"), do: "mx-auto max-w-3xl"
-
-  defp size_class("quadruple_large"), do: "mx-auto max-w-4xl"
-
-  defp size_class("screen"), do: "w-full h-screen overflow-y-scroll"
-
-  defp size_class(params) when is_binary(params), do: params
-
-  defp size_class(_), do: size_class("extra_large")
 
   defp color_variant("default", "white") do
     "bg-white text-[#3E3E3E] border border-[#DADADA]"

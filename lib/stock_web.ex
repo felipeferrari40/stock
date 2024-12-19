@@ -1,4 +1,6 @@
 defmodule StockWeb do
+  use Number
+
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, components, channels, and so on.
@@ -88,6 +90,8 @@ defmodule StockWeb do
       import StockWeb.CoreComponents
       import StockWeb.Components.Sidebar
       import StockWeb.Components.Dropdown
+
+      import StockWeb.Helpers.EnumHelpers
 
       import StockWeb.Gettext
 

@@ -142,7 +142,7 @@ defmodule StockWeb.Components.Card do
     <div
       id={@id}
       class={[
-        "overflow-hidden",
+        "overflow-hidden p-4 rounded-xl",
         space_class(@space),
         border_class(@border),
         color_variant(@variant, @color),

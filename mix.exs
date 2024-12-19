@@ -60,7 +60,8 @@ defmodule Stock.MixProject do
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.5"},
       {:mishka_chelekom, "~> 0.0.1", only: :dev},
-      {:flop, "~> 0.20.0"}
+      {:flop, "~> 0.20.0"},
+      {:number, "~> 1.0.1"}
     ]
   end
 

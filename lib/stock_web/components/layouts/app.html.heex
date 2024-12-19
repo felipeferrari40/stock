@@ -1,6 +1,6 @@
-<div class="min-h-screen min-w-full flex">
+<div class="flex">
       <%= StockWeb.Layouts.drawer(assigns) %>
-    <main class="p-6 w-2/3 mt-8">
+    <main class="p-6 w-full mt-8">
       <.flash_group flash={@flash} />
       <%= @inner_content %>
     </main>

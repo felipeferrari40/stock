@@ -7,6 +7,16 @@
 # General application configuration
 import Config
 
+config :number,
+  currency: [
+    unit: "R$",
+    precision: 2,
+    delimiter: ".",
+    separator: ","
+  ]
+
+config :gettext, :default_locale, "pt_BR"
+
 config :stock,
   ecto_repos: [Stock.Repo],
   generators: [timestamp_type: :utc_datetime]

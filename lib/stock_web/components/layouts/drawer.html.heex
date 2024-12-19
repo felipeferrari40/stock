@@ -1,21 +1,26 @@
 <.sidebar
   id="sidebar-id"
-  color="dark"
+  style="background-color: rgb(127 29 29)"
+  class="max-h-screen shadow-md text-white"
   hide_position="left"
   position="right"
   size="medium"
 >
   <div class="flex flex-col px-4 py-2 h-full">
-    <.link navigate="/sales" class="mt-16 p-3 hover:bg-gray-500 rounded-xl text-end">
+    <img class="max-w-72 p-6 w-full mx-auto" src={~p"/images/wine_logo.svg"} />
+    <.link navigate="/sales" class="mt-8 p-3 hover:bg-gray-500 rounded-xl text-end">
       Vendas
     </.link>
     <.link navigate="/customers" class="p-3 hover:bg-gray-500 rounded-xl text-end">
       Clientes
     </.link>
-    <.link navigate="/inventory" class="p-3 hover:bg-gray-500 rounded-xl text-end">
-      Estoque
+    <.link navigate="/products" class="p-3 hover:bg-gray-500 rounded-xl text-end">
+      Produtos
     </.link>
-    <.link navigate="/" class="mt-auto p-3 first-letter:p-3 hover:bg-gray-500 rounded-xl mb-8 text-end">
+    <.link navigate="/inventory" class="p-3 hover:bg-gray-500 rounded-xl text-end">
+      Inventário
+    </.link>
+    <.link navigate="/" class="mt-auto p-3 hover:bg-gray-500 rounded-xl mb-8 w-full text-end">
       <.icon name="fa-right-from-bracket" /> Logoff
     </.link>
   </div>

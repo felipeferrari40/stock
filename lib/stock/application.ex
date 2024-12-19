@@ -19,7 +19,7 @@ defmodule Stock.Application do
       # Start to serve requests, typically the last entry
       StockWeb.Endpoint
     ]
-
+    
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Stock.Supervisor]
