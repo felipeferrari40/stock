@@ -29,12 +29,6 @@ defmodule Stock.Customers do
         value = "%#{value}%"
         where(query, [u], ilike(u.name, ^value) or ilike(u.email, ^value))
 
-      {"role", value}, query ->
-        where(query, [u], u.role == ^value)
-
-      {"approved", value}, query ->
-        where(query, [u], u.approved == ^value)
-
       {_, _}, query ->
         query
     end)
@@ -106,6 +100,16 @@ defmodule Stock.Customers do
   """
   def delete_customer(%Customer{} = customer) do
     Repo.delete(customer)
+  end
+
+  def delete_customer_by_id(id) do
+    case Repo.get(Customer, id) do
+      nil -> 
+        {:error, "Cliente não encontrado"}
+      
+      customer -> 
+        Repo.delete(customer)
+    end
   end
 
   @doc """

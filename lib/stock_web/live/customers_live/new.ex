@@ -8,7 +8,14 @@ defmodule StockWeb.CustomersLive.New do
   def render(assigns) do
     ~H"""
     <div>
-      <.form for={@form} id="customer-form" phx-change="validate" phx-submit="save" class="space-y-2">
+      <.form
+        for={@form}
+        id="customer-form"
+        phx-change="validate"
+        phx-submit="save"
+        class="space-y-2"
+        phx-target={@myself}
+      >
         <.input field={@form[:name]} label="Nome/Razão Social" />
         <.input field={@form[:email]} type="email" label="E-mail" />
         <.input
@@ -36,6 +43,30 @@ defmodule StockWeb.CustomersLive.New do
      socket
      |> assign(assigns)
      |> assign_form(changeset)}
+  end
+
+  @impl true
+  def handle_event("validate", %{"customer" => customer_params}, socket) do
+    changeset =
+      %Stock.Customers.Customer{}
+      |> Stock.Customers.change_customer(customer_params)
+      |> Map.put(:action, :validate)
+
+    {:noreply, assign_form(socket, changeset)}
+  end
+
+  @impl true
+  def handle_event("save", %{"customer" => customer_params}, socket) do
+    case Stock.Customers.create_customer(customer_params) do
+      {:ok, _customer} ->
+        {:noreply,
+         socket
+         |> put_flash(:info, "Cliente gerado com sucesso!")
+         |> push_navigate(to: "/customers")}
+
+      {:error, changeset} ->
+        {:noreply, assign_form(socket, changeset)}
+    end
   end
 
   defp assign_form(socket, %Ecto.Changeset{} = changeset) do

@@ -21,6 +21,8 @@ defmodule Stock.Customers.Customer do
     field :email, :string
     field :phone, :string
 
+    has_many :sales, Stock.Sales.Sale, foreign_key: :customer_id
+
     timestamps(type: :utc_datetime)
   end
 
