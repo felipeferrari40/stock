@@ -1,7 +1,12 @@
 <div class="flex">
-      <%= StockWeb.Layouts.drawer(assigns) %>
-    <main class="p-6 w-full mt-8">
-      <.flash_group flash={@flash} />
-      <%= @inner_content %>
-    </main>
+  <%= if assigns[:current_user] do %>
+    <%= StockWeb.Layouts.drawer(assigns) %>
+  <% else %>
+    <%= StockWeb.Layouts.login(assigns) %>
+  <% end %>
+
+  <main class="p-6 w-full mt-8">
+    <.flash_group flash={@flash} />
+    <%= @inner_content %>
+  </main>
 </div>

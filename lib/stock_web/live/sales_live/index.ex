@@ -47,7 +47,7 @@ defmodule StockWeb.SalesLive.Index do
               <.td><%= Number.Currency.number_to_currency(sale.total_amount) %></.td>
               <.td>
                 <%= translate_enum(sale.status) %>
-                <.link :if={!sale.status in [:canceled, :delivered]} patch={~p"/sales/#{sale.id}"}>
+                <.link :if={sale.status not in [:canceled, :delivered]} patch={~p"/sales/#{sale.id}"}>
                   <.button class="ml-2" size="small">
                     <.icon name="fa-edit" />
                   </.button>

@@ -8,7 +8,6 @@ defmodule Stock.Inventory do
 
   alias Stock.Inventory
   alias Stock.Inventory.InventoryProduct
-  alias Stock.InventoryMovements.InventoryMovement
 
   @doc """
   Returns the list of inventory.

@@ -20,7 +20,11 @@
     <.link navigate="/inventory" class="p-3 hover:bg-gray-500 rounded-xl text-end">
       Inventário
     </.link>
-    <.link navigate="/" class="mt-auto p-3 hover:bg-gray-500 rounded-xl mb-8 w-full text-end">
+    <.link
+      method="delete"
+      href={~p"/log_out"}
+      class="mt-auto p-3 hover:bg-gray-500 rounded-xl mb-8 w-full text-end"
+    >
       <.icon name="fa-right-from-bracket" /> Logoff
     </.link>
   </div>
